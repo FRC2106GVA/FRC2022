@@ -12,4 +12,56 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+    
+    //Mechanism Constants
+    public static final class DriveConstants{
+
+        //Motor controller CAN Ids
+        public static final int CANrightMotor1 = 2;
+        public static final int CANrightMotor2 = 3;
+        public static final int CANrightMotor3 = 4;
+
+        public static final int CANleftMotor1 = 5;
+        public static final int CANleftMotor2 = 6;
+        public static final int CANleftMotor3 = 7;
+
+        //Power Distribution Panel (PDP) slots
+        public static final int PDPrightMotor1 = 0;
+        public static final int PDPrightMotor2 = 1;
+        public static final int PDPrightMotor3 = 2;
+
+        public static final int PDPleftMotor1 = 3;
+        public static final int PDPleftMotor2 = 4;
+        public static final int PDPleftMotor3 = 5;
+
+
+        public static final int ampWarning = 2;
+    }
+
+    public static final class IntakeConstants{
+
+    }
+
+    public static final class IndexerConstants{
+
+    }
+
+    public static final class ShooterConstants{
+
+    }
+
+    public static final class ClimbConstants{
+
+    }
+
+    public static final class inputConstants{
+
+        public static final int IDrightJoystick = 0;
+        public static final int IDleftJoystick = 0;
+
+        public static final int IDxboxController = 0;
+        public static final int IDbuttonBoard = 0;
+
+    }
+}
