@@ -3,8 +3,10 @@
 // Import variables and libaries
 package frc.robot.subsystems;
 
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
+
 
 import com.fasterxml.jackson.core.json.DupDetector;
 //import java.util.PrimitiveIterator.OfDouble;
@@ -17,8 +19,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistribution;
 //import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 //import edu.wpi.first.wpilibj.geometry.Pose2d;
 //import edu.wpi.first.wpilibj.geometry.Rotation2d;
 //import edu.wpi.first.wpilibj.kinematics. ampWarning = 2;
@@ -27,6 +29,28 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // Get robot drive instance  
 public class DriveSubsystem extends SubsystemBase {
 
+   // Create variables used in subsystem
+   private static DriveSubsystem robotDrive = null;
+   private static DifferentialDrive robotTankDrive;
+ 
+   // Speed controller groups
+   private static MotorControllerGroup mg_rightMotors;
+   private static MotorControllerGroup mg_leftMotors;
+ 
+   // Motor variables
+   private static CANSparkMax m_rightMotor1;
+   private static CANSparkMax m_rightMotor2;
+   private static CANSparkMax m_rightMotor3;
+   private static CANSparkMax m_leftMotor1;
+   private static CANSparkMax m_leftMotor2;
+   private static CANSparkMax m_leftMotor3;
+ 
+   // PDP instance
+   
+ 
+   // Other varibles
+   private static boolean drivetrainlocked;
+
   public static DriveSubsystem getInstance(){
     if(robotDrive == null){
       robotDrive = new DriveSubsystem();
@@ -34,27 +58,7 @@ public class DriveSubsystem extends SubsystemBase {
     return robotDrive;
   }
  
-  // Create variables used in subsystem
-  private static DriveSubsystem robotDrive = null;
-  private static DifferentialDrive robotTankDrive;
-
-  // Speed controller groups
-  private static SpeedControllerGroup mg_rightMotors;
-  private static SpeedControllerGroup mg_leftMotors;
-
-  // Motor variables
-  private static CANSparkMax m_rightMotor1;
-  private static CANSparkMax m_rightMotor2;
-  private static CANSparkMax m_rightMotor3;
-  private static CANSparkMax m_leftMotor1;
-  private static CANSparkMax m_leftMotor2;
-  private static CANSparkMax m_leftMotor3;
-
-  // PDP instance
-  
-
-  // Other varibles
-  private static boolean drivetrainlocked;
+ 
 
   private DriveSubsystem() {
     // Assign motor CAN IDs, and winding type
@@ -74,8 +78,8 @@ public class DriveSubsystem extends SubsystemBase {
     m_leftMotor3.restoreFactoryDefaults();
 
     // Assign motors to speed controller groups
-    mg_rightMotors = new SpeedControllerGroup(m_rightMotor1, m_rightMotor2, m_rightMotor3);
-    mg_leftMotors = new SpeedControllerGroup(m_leftMotor1, m_leftMotor2, m_leftMotor3);
+    mg_rightMotors = new MotorControllerGroup(m_rightMotor1, m_rightMotor2, m_rightMotor3);
+    mg_leftMotors = new MotorControllerGroup(m_leftMotor1, m_leftMotor2, m_leftMotor3);
 
     // Create a tank drive using speed controller groups
     robotTankDrive = new DifferentialDrive(mg_leftMotors, mg_rightMotors);

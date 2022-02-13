@@ -48,7 +48,8 @@ public final class Constants {
     }
 
     public static final class ShooterConstants{
-
+        public static final int CANleadMotor = 2;
+        public static final int CANfollowMotor = 3;
     }
 
     public static final class ClimbConstants{
