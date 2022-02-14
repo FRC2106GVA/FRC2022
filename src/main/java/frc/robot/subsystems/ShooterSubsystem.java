@@ -7,7 +7,9 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.SparkMaxPIDController;
 
 import frc.robot.Constants.ShooterConstants;
 
@@ -18,7 +20,7 @@ public class ShooterSubsystem extends SubsystemBase {
    private static CANSparkMax m_shooterLead;
    private static CANSparkMax m_shooterFollow;
 
-  
+   
   
   /** Creates a new ShooterSubsystem. */
   public static ShooterSubsystem getInstance(){
@@ -35,6 +37,9 @@ public class ShooterSubsystem extends SubsystemBase {
 
     m_shooterLead.restoreFactoryDefaults();
     m_shooterFollow.restoreFactoryDefaults();
+
+    m_shooterLead.setIdleMode(IdleMode.kCoast);
+    m_shooterFollow.setIdleMode(IdleMode.kCoast);
 
     m_shooterFollow.follow(m_shooterLead, true);
   }

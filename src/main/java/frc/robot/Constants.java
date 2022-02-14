@@ -17,7 +17,7 @@ public final class Constants {
     //Mechanism Constants
     public static final class DriveConstants{
 
-        //Motor controller CAN Ids
+        //Motor controller CAN IDs
         public static final int CANrightMotor1 = 2;
         public static final int CANrightMotor2 = 3;
         public static final int CANrightMotor3 = 4;
@@ -37,6 +37,9 @@ public final class Constants {
 
 
         public static final int ampWarning = 2;
+
+        //PID Constants
+         
     }
 
     public static final class IntakeConstants{
@@ -48,8 +51,15 @@ public final class Constants {
     }
 
     public static final class ShooterConstants{
+        
+        //Motor controller CAN IDs
         public static final int CANleadMotor = 2;
         public static final int CANfollowMotor = 3;
+
+        //Power Distribution Panel (PDP) slots
+        public static final int PDPleadMotor = 6;
+        public static final int PDPfollowMotor = 7;
+
     }
 
     public static final class ClimbConstants{
@@ -58,6 +68,17 @@ public final class Constants {
 
     public static final class LimitSwitchConstant{
         
+    }
+
+    public static final class ShooterPIDConstants{
+        public static double kP = 0; 
+        public static double kI = 0;
+        public static double kD = 0; 
+        public static double kIz = 0; 
+        public static double kFF = 0.000015; 
+        public static double kMaxOutput = 1; 
+        public static double kMinOutput = -1;
+        public static double maxRPM = 5700;
     }
 
     public static final class inputConstants{

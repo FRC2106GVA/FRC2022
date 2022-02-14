@@ -3,10 +3,8 @@
 // Import variables and libaries
 package frc.robot.subsystems;
 
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
-
 
 import com.fasterxml.jackson.core.json.DupDetector;
 //import java.util.PrimitiveIterator.OfDouble;
@@ -57,7 +55,6 @@ public class DriveSubsystem extends SubsystemBase {
     }
     return robotDrive;
   }
- 
  
 
   private DriveSubsystem() {
@@ -122,6 +119,10 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
 
+  
+
+
+
   public void updateSmartDashboard(){
 
     // Display drivetrain lock
@@ -134,6 +135,7 @@ public class DriveSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("ML #1 Current", PDP.getCurrent(DriveConstants.PDPleftMotor1));
     SmartDashboard.putNumber("ML #2 Current", PDP.getCurrent(DriveConstants.PDPleftMotor2));
     */
+
   }
 
 
@@ -160,7 +162,6 @@ public class DriveSubsystem extends SubsystemBase {
   // Arcade drive
   public void arcadeDrive(double forward, double rotation){
     if (DriverStation.isTeleop()){
-
       robotTankDrive.arcadeDrive(forward, -rotation, true); 
     }
   }

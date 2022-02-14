@@ -8,7 +8,22 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IndexerSubsystem extends SubsystemBase {
   /** Creates a new IndexerSubsystem. */
-  public IndexerSubsystem() {}
+  
+  private static IndexerSubsystem robotIndexer = null;
+  
+  
+  public static IndexerSubsystem getInstance(){
+    if(robotIndexer == null){
+      robotIndexer = new IndexerSubsystem();
+    }
+    return robotIndexer;
+  }
+  
+  public IndexerSubsystem() {
+
+  }
+
+
 
   @Override
   public void periodic() {

@@ -41,8 +41,10 @@ public class ControllerInputs {
     }
 
     // Below this line; Define the button IDs that start certain commands
-
     public boolean GETexample(){
         return rightJoystick.getRawButton(1);
     }
+
 }
+
+ 
