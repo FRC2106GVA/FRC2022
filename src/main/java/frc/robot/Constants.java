@@ -56,6 +56,10 @@ public final class Constants {
 
     }
 
+    public static final class LimitSwitchConstant{
+        
+    }
+
     public static final class inputConstants{
 
         public static final int IDrightJoystick = 0;
