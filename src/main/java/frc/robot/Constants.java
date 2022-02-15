@@ -38,11 +38,30 @@ public final class Constants {
 
         public static final int ampWarning = 2;
 
+        public static final double slowModeAmount = 0.5;
+
         //PID Constants
          
     }
 
     public static final class IntakeConstants{
+        
+        //Motor controller CAN IDs
+        //Change this to proper CAN ID
+
+        public static final int CANIntakeMotor = 10;
+
+        //Intake raise PWM port
+        public static final int PWMIntakeRaiseMotor = 0;
+
+        //Power Distribution Panel(PDP) slots
+        //Change this to proper slot number
+
+        public static final int PDPIntakeMotor = 10;
+
+        //Intake motor current limit
+
+        public static final int IntakeAmpLimit = 20;
 
     }
 

@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxPIDController;
@@ -20,7 +21,8 @@ public class ShooterSubsystem extends SubsystemBase {
    private static CANSparkMax m_shooterLead;
    private static CANSparkMax m_shooterFollow;
 
-   
+   private static RelativeEncoder m_leadEncoder;
+   private static RelativeEncoder m_followEncoder;
   
   /** Creates a new ShooterSubsystem. */
   public static ShooterSubsystem getInstance(){
@@ -42,6 +44,9 @@ public class ShooterSubsystem extends SubsystemBase {
     m_shooterFollow.setIdleMode(IdleMode.kCoast);
 
     m_shooterFollow.follow(m_shooterLead, true);
+
+    m_leadEncoder = m_shooterLead.getEncoder();
+
   }
 
   @Override
@@ -53,4 +58,6 @@ public class ShooterSubsystem extends SubsystemBase {
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
   }
+
+  
 }

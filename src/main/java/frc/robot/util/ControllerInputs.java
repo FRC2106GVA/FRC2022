@@ -45,6 +45,9 @@ public class ControllerInputs {
         return rightJoystick.getRawButton(1);
     }
 
+    public boolean GETslowMode(){
+        return rightJoystick.getRawButton(2);
+    }
 }
 
  

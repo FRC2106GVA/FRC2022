@@ -2,10 +2,8 @@
 
 // Import variables and libaries
 package frc.robot.subsystems;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
-
 import com.fasterxml.jackson.core.json.DupDetector;
 //import java.util.PrimitiveIterator.OfDouble;
 //import javax.print.CancelablePrintJob;
@@ -29,7 +27,7 @@ public class DriveSubsystem extends SubsystemBase {
 
    // Create variables used in subsystem
    private static DriveSubsystem robotDrive = null;
-   private static DifferentialDrive robotTankDrive;
+   public DifferentialDrive robotTankDrive;
  
    // Speed controller groups
    private static MotorControllerGroup mg_rightMotors;
@@ -47,7 +45,7 @@ public class DriveSubsystem extends SubsystemBase {
    
  
    // Other varibles
-   private static boolean drivetrainlocked;
+   public boolean driveTrainLocked;
 
   public static DriveSubsystem getInstance(){
     if(robotDrive == null){
@@ -80,7 +78,6 @@ public class DriveSubsystem extends SubsystemBase {
 
     // Create a tank drive using speed controller groups
     robotTankDrive = new DifferentialDrive(mg_leftMotors, mg_rightMotors);
-    drivetrainlocked = false;
   }
 
   @Override
@@ -94,55 +91,13 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
 
-  public void checkMotorCurrent(){
-    /*
-    // Check all motors current
-    if(PDP.getCurrent(DriveConstants.PDPrightMotor1) > DriveConstants.ampWarning){
-      DriverStation.reportWarning("Right motor #1 has high current: " + DriveConstants.PDPrightMotor1 , true);
-    }
-    if(PDP.getCurrent(DriveConstants.PDPrightMotor2) > DriveConstants.ampWarning){
-      DriverStation.reportWarning("Right motor #2 has high current: " + DriveConstants.PDPrightMotor2 , true);
-    }
-    if(PDP.getCurrent(DriveConstants.PDPrightMotor3) > DriveConstants.ampWarning){
-      DriverStation.reportWarning("Right motor #3 has high current: " + DriveConstants.PDPrightMotor3 , true);
-    }
-    if(PDP.getCurrent(DriveConstants.PDPleftMotor1) > DriveConstants.ampWarning){
-      DriverStation.reportWarning("Left motor #1 has high current: " + DriveConstants.PDPleftMotor1 , true);
-    }
-    if(PDP.getCurrent(DriveConstants.PDPleftMotor2) > DriveConstants.ampWarning){
-      DriverStation.reportWarning("Left motor #2 has high current: " + DriveConstants.PDPleftMotor2 , true);
-    }
-    if(PDP.getCurrent(DriveConstants.PDPleftMotor3) > DriveConstants.ampWarning){
-      DriverStation.reportWarning("Left motor #3 has high current: " + DriveConstants.PDPleftMotor3 , true);
-    }
-    */
-  }
 
 
-  
-
-
-
-  public void updateSmartDashboard(){
-
-    // Display drivetrain lock
-    SmartDashboard.putBoolean("Drivetrain lock", drivetrainlocked);
-    
-    // Display motor current
-    /*
-    SmartDashboard.putNumber("MR #1 Current", PDP.getCurrent(DriveConstants.PDPrightMotor1));
-    SmartDashboard.putNumber("MR #2 Current", PDP.getCurrent(DriveConstants.PDPrightMotor2));
-    SmartDashboard.putNumber("ML #1 Current", PDP.getCurrent(DriveConstants.PDPleftMotor1));
-    SmartDashboard.putNumber("ML #2 Current", PDP.getCurrent(DriveConstants.PDPleftMotor2));
-    */
-
-  }
-
-
+/**
   public void lockDrivetrain(boolean locked){
     // Lock all motors
     if(locked == true){
-      drivetrainlocked = true;
+      driveTrainLocked = true;
       m_rightMotor1.setIdleMode(IdleMode.kBrake);
       m_rightMotor2.setIdleMode(IdleMode.kBrake);
       m_leftMotor1.setIdleMode(IdleMode.kBrake);
@@ -151,7 +106,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     // Unlock all motors
     if(locked == false){
-      drivetrainlocked = false;
+      driveTrainLocked = false;
       m_rightMotor1.setIdleMode(IdleMode.kCoast);
       m_rightMotor2.setIdleMode(IdleMode.kCoast);
       m_leftMotor1.setIdleMode(IdleMode.kCoast);
@@ -165,4 +120,6 @@ public class DriveSubsystem extends SubsystemBase {
       robotTankDrive.arcadeDrive(forward, -rotation, true); 
     }
   }
+  **/
 }
+
