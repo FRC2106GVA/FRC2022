@@ -26,8 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveSubsystem extends SubsystemBase {
 
    // Create variables used in subsystem
-   private static DriveSubsystem robotDrive = null;
-   public DifferentialDrive robotTankDrive;
+   public DifferentialDrive m_robotTankDrive;
  
    // Speed controller groups
    private static MotorControllerGroup mg_rightMotors;
@@ -40,23 +39,9 @@ public class DriveSubsystem extends SubsystemBase {
    private static CANSparkMax m_leftMotor1;
    private static CANSparkMax m_leftMotor2;
    private static CANSparkMax m_leftMotor3;
- 
-   // PDP instance
-   
- 
-   // Other varibles
-   public boolean driveTrainLocked;
 
-  public static DriveSubsystem getInstance(){
-    if(robotDrive == null){
-      robotDrive = new DriveSubsystem();
-    }
-    return robotDrive;
-  }
- 
-
-  private DriveSubsystem() {
-    // Assign motor CAN IDs, and winding type
+  public DriveSubsystem() {
+    // Assign data to motors, MotorID and MotorType
     m_rightMotor1 = new CANSparkMax(DriveConstants.CANrightMotor1, MotorType.kBrushless);
     m_rightMotor2 = new CANSparkMax(DriveConstants.CANrightMotor2, MotorType.kBrushless);
     m_rightMotor3 = new CANSparkMax(DriveConstants.CANrightMotor3, MotorType.kBrushless);
@@ -64,7 +49,7 @@ public class DriveSubsystem extends SubsystemBase {
     m_leftMotor2 = new CANSparkMax(DriveConstants.CANleftMotor2, MotorType.kBrushless);
     m_leftMotor3 = new CANSparkMax(DriveConstants.CANleftMotor3, MotorType.kBrushless);
 
-    // Restore motor factory settings
+    // Restore motor factory settings, to avoid messed up motors
     m_rightMotor1.restoreFactoryDefaults();
     m_rightMotor2.restoreFactoryDefaults();
     m_rightMotor3.restoreFactoryDefaults();
@@ -72,54 +57,28 @@ public class DriveSubsystem extends SubsystemBase {
     m_leftMotor2.restoreFactoryDefaults();
     m_leftMotor3.restoreFactoryDefaults();
 
-    // Assign motors to speed controller groups
+    // Assign motors to speed controller groups, just input motor names
     mg_rightMotors = new MotorControllerGroup(m_rightMotor1, m_rightMotor2, m_rightMotor3);
     mg_leftMotors = new MotorControllerGroup(m_leftMotor1, m_leftMotor2, m_leftMotor3);
 
-    // Create a tank drive using speed controller groups
-    robotTankDrive = new DifferentialDrive(mg_leftMotors, mg_rightMotors);
+    // Invert motors, do this so drivetrain spin like a beyblade
+    mg_leftMotors.setInverted(true);
+
+    
+    // Create a tank drive using speed controller groups, a tank drive is LeftForward, RightForward
+    m_robotTankDrive = new DifferentialDrive(mg_leftMotors, mg_rightMotors);
+  }
+
+  // Control drivetrain with lamba function in RobotContainer
+  public void tankDrive(double left, double right)
+  {
+    m_robotTankDrive.tankDrive(left, right);
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    // Update shuffle board values
+    
   }
 
-  @Override
-  public void simulationPeriodic() {
-    // This method will be called once per scheduler run during simulation
-  }
-
-
-
-
-/**
-  public void lockDrivetrain(boolean locked){
-    // Lock all motors
-    if(locked == true){
-      driveTrainLocked = true;
-      m_rightMotor1.setIdleMode(IdleMode.kBrake);
-      m_rightMotor2.setIdleMode(IdleMode.kBrake);
-      m_leftMotor1.setIdleMode(IdleMode.kBrake);
-      m_leftMotor2.setIdleMode(IdleMode.kBrake);
-    }
-
-    // Unlock all motors
-    if(locked == false){
-      driveTrainLocked = false;
-      m_rightMotor1.setIdleMode(IdleMode.kCoast);
-      m_rightMotor2.setIdleMode(IdleMode.kCoast);
-      m_leftMotor1.setIdleMode(IdleMode.kCoast);
-      m_leftMotor2.setIdleMode(IdleMode.kCoast);
-    }
-  }
-
-  // Arcade drive
-  public void arcadeDrive(double forward, double rotation){
-    if (DriverStation.isTeleop()){
-      robotTankDrive.arcadeDrive(forward, -rotation, true); 
-    }
-  }
-  **/
 }
-

@@ -24,9 +24,7 @@ public class ControllerInputs {
     private ControllerInputs(){
         
         // Set controller varibles to respective IDs
-        rightJoystick = new Joystick(inputConstants.IDrightJoystick);
-        leftJoystick =  new Joystick(inputConstants.IDleftJoystick);
-        xboxController = new XboxController(inputConstants.IDxboxController);
+        
     }
 
     // GET functions for inputs

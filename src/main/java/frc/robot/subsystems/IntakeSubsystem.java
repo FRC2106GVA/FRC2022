@@ -27,9 +27,10 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   /** Creates a new IntakeSubsystem. */
-  public IntakeSubsystem() {
+  private IntakeSubsystem() {
+    
     m_IntakeMotor = new CANSparkMax(Constants.IntakeConstants.CANIntakeMotor, MotorType.kBrushless);
-    Spark m_IntakeRaiseMotor = new Spark(Constants.IntakeConstants.PWMIntakeRaiseMotor);
+    
 
   }
 

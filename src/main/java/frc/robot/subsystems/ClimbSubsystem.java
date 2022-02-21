@@ -11,15 +11,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ClimbSubsystem extends SubsystemBase {
 
-  private static ClimbSubsystem robotClimb = null;
-
-  public static ClimbSubsystem getInstance(){
-    if(robotClimb == null){
-      robotClimb = new ClimbSubsystem();
-    }
-    return robotClimb;
-  }
-
   /** Creates a new ClimbSubsystem. */
   public ClimbSubsystem() {}
 

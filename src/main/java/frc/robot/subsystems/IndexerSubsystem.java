@@ -6,25 +6,26 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import frc.robot.Constants.IndexerConstants;
+
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 public class IndexerSubsystem extends SubsystemBase {
   /** Creates a new IndexerSubsystem. */
-  
-  private static IndexerSubsystem robotIndexer = null;
-  
-  
-  public static IndexerSubsystem getInstance(){
-    if(robotIndexer == null){
-      robotIndexer = new IndexerSubsystem();
-    }
-    return robotIndexer;
-  }
+  private static CANSparkMax m_indexerMotor;
+
   
   public IndexerSubsystem() {
+    m_indexerMotor = new CANSparkMax(IndexerConstants.CANindexerMotor, MotorType.kBrushless);
+    m_indexerMotor.restoreFactoryDefaults();
+    m_indexerMotor.setIdleMode(IdleMode.kCoast);
+    
 
   }
-
-
-
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
@@ -34,4 +35,9 @@ public class IndexerSubsystem extends SubsystemBase {
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
   }
+
+  public void runIndexer(double value) {
+    m_indexerMotor.set(value);
+  }
+
 }

@@ -66,7 +66,8 @@ public final class Constants {
     }
 
     public static final class IndexerConstants{
-
+        //Motor controller CAN IDs
+        public static final int CANindexerMotor = 2;
     }
 
     public static final class ShooterConstants{
@@ -102,11 +103,11 @@ public final class Constants {
 
     public static final class inputConstants{
 
-        public static final int IDrightJoystick = 0;
-        public static final int IDleftJoystick = 0;
+        public static final int kIDrightJoystick = 0;
+        public static final int kIDleftJoystick = 0;
 
-        public static final int IDxboxController = 0;
-        public static final int IDbuttonBoard = 0;
+        public static final int kIDxboxController = 0;
+        public static final int kIDbuttonBoard = 0;
 
     }
 }

@@ -8,14 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class LimitSwitchSubsystem extends SubsystemBase {
 
-  public static LimitSwitchSubsystem robotLimitSwicthes = null;
-
-  public static LimitSwitchSubsystem getInstance(){
-    if(robotLimitSwicthes == null){
-      robotLimitSwicthes = new LimitSwitchSubsystem();
-    }
-    return robotLimitSwicthes;
-  }
+  
 
   /** Creates a new LimitSwitchSubsystem. */
   public LimitSwitchSubsystem() {
