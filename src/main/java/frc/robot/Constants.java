@@ -18,15 +18,16 @@ public final class Constants {
     public static final class DriveConstants{
 
         //Motor controller CAN IDs
-        public static final int CANrightMotor1 = 2;
-        public static final int CANrightMotor2 = 3;
-        public static final int CANrightMotor3 = 4;
+        public static final int CANrightMotor1 = 1;
+        public static final int CANrightMotor2 = 2;
+        public static final int CANrightMotor3 = 3;
 
-        public static final int CANleftMotor1 = 5;
-        public static final int CANleftMotor2 = 6;
-        public static final int CANleftMotor3 = 7;
+        public static final int CANleftMotor1 = 4;
+        public static final int CANleftMotor2 = 5;
+        public static final int CANleftMotor3 = 6;
 
         //Power Distribution Panel (PDP) slots
+        /*
         public static final int PDPrightMotor1 = 0;
         public static final int PDPrightMotor2 = 1;
         public static final int PDPrightMotor3 = 2;
@@ -35,11 +36,10 @@ public final class Constants {
         public static final int PDPleftMotor2 = 4;
         public static final int PDPleftMotor3 = 5;
 
-
         public static final int ampWarning = 2;
 
         public static final double slowModeAmount = 0.5;
-
+                */
         //PID Constants
          
     }
