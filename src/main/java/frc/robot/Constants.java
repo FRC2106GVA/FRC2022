@@ -67,14 +67,14 @@ public final class Constants {
 
     public static final class IndexerConstants{
         //Motor controller CAN IDs
-        public static final int CANindexerMotor = 2;
+        public static final int CANindexerMotor = 9;
     }
 
     public static final class ShooterConstants{
         
         //Motor controller CAN IDs
-        public static final int CANleadMotor = 2;
-        public static final int CANfollowMotor = 3;
+        public static final int CANleadMotor = 7;
+        public static final int CANfollowMotor = 8;
 
         //Power Distribution Panel (PDP) slots
         public static final int PDPleadMotor = 6;
@@ -104,10 +104,20 @@ public final class Constants {
     public static final class inputConstants{
 
         public static final int kIDrightJoystick = 0;
-        public static final int kIDleftJoystick = 0;
+        public static final int kIDleftJoystick = 1;
 
-        public static final int kIDxboxController = 0;
-        public static final int kIDbuttonBoard = 0;
+        public static final int kIDxboxController = 4;
+        public static final int kIDbuttonBoard = 6;
 
+    }
+
+    public static final class VisionConstants{
+        
+        public static final double kTargetHeightMeters = 2.64;
+        public static final double kCameraHeightMeters = 1.1131;
+
+        public static final double kCameraMountAngle = 20.0;
+        
+        
     }
 }

@@ -12,6 +12,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxPIDController;
 import frc.robot.Constants.ShooterConstants;
+import frc.robot.util.VisionProcessing;
 
 public class ShooterSubsystem extends SubsystemBase {
 
@@ -24,6 +25,8 @@ public class ShooterSubsystem extends SubsystemBase {
    // Create encoders- one is main and the other one follows
    private static RelativeEncoder m_leadEncoder;
    private static RelativeEncoder m_followEncoder;
+
+   private static VisionProcessing m_visionProcessing;
   
 
   public ShooterSubsystem() {
@@ -56,6 +59,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void periodic() {
     // Update smart dashboard
     SmartDashboard.putNumber("Shooter RPM", (m_leadEncoder.getVelocity()));
+    m_visionProcessing.run();
     
   }
 
