@@ -59,7 +59,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void periodic() {
     // Update smart dashboard
     SmartDashboard.putNumber("Shooter RPM", (m_leadEncoder.getVelocity()));
-    
+    m_visionProcessing.run();
     
   }
 
