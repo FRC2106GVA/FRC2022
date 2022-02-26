@@ -21,7 +21,7 @@ public class TestShootCommand extends CommandBase {
   public TestShootCommand(ShooterSubsystem subsystem) {
     
     m_subsystem = subsystem;
-    m_subsystem.runTestShooter(1);
+    
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -32,7 +32,10 @@ public class TestShootCommand extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    //m_subsystem.runTestShooter(1);
+    //m_subsystem.testShooterPID(4000);
+  }
 
   // Called once the command ends or is interrupted.
   @Override

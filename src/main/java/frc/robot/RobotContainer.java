@@ -52,8 +52,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     // Test the shooter
-    new JoystickButton(m_rightJoystick, 1)
-      .toggleWhenPressed(new TestShootCommand(m_shooterSubsystem), true);
+    //new JoystickButton(m_rightJoystick, 1)
+    //  .toggleWhenPressed(new TestShootCommand(m_shooterSubsystem), true);
 
     
   }

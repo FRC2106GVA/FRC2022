@@ -12,6 +12,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxPIDController;
 import frc.robot.Constants.ShooterConstants;
+import frc.robot.Constants.ShooterPIDConstants;
 import frc.robot.util.VisionProcessing;
 
 public class ShooterSubsystem extends SubsystemBase {
@@ -26,8 +27,11 @@ public class ShooterSubsystem extends SubsystemBase {
    private static RelativeEncoder m_leadEncoder;
    private static RelativeEncoder m_followEncoder;
 
+   private SparkMaxPIDController m_pidController;
+
    private static VisionProcessing m_visionProcessing;
-  
+
+     
 
   public ShooterSubsystem() {
     // Set values for shooter motors, inputs are MotorID and MotorType
@@ -48,6 +52,17 @@ public class ShooterSubsystem extends SubsystemBase {
     // Make the one encoder follow the other
     m_leadEncoder = m_shooterLead.getEncoder();
 
+    m_visionProcessing.getInstance();
+
+    m_pidController = m_shooterLead.getPIDController();
+
+    m_pidController.setP(ShooterPIDConstants.kP);
+    m_pidController.setI(ShooterPIDConstants.kI);
+    m_pidController.setD(ShooterPIDConstants.kD);
+    m_pidController.setIZone(ShooterPIDConstants.kIz);
+    m_pidController.setFF(ShooterPIDConstants.kFF);
+    m_pidController.setOutputRange(ShooterPIDConstants.kMinOutput, ShooterPIDConstants.kMaxOutput);
+    
   }
 
   // Run the shooter lead motor, is called via a instant command
@@ -55,11 +70,13 @@ public class ShooterSubsystem extends SubsystemBase {
     m_shooterLead.set(input);
   }
 
+  public void testShooterPID(double setpoint){
+    m_pidController.setReference(setpoint, CANSparkMax.ControlType.kVelocity);
+  }
+
   @Override
   public void periodic() {
     // Update smart dashboard
-    SmartDashboard.putNumber("Shooter RPM", (m_leadEncoder.getVelocity()));
-    m_visionProcessing.run();
     
   }
 

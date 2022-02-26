@@ -41,6 +41,8 @@ public final class Constants {
         public static final double slowModeAmount = 0.5;
                 */
         //PID Constants
+
+        public static final double kDriveGearRatio = 6.9;
          
     }
 
@@ -49,7 +51,7 @@ public final class Constants {
         //Motor controller CAN IDs
         //Change this to proper CAN ID
 
-        public static final int CANIntakeMotor = 10;
+        public static final int CANIntakeMotor = 13;
 
         //Intake raise PWM port
         public static final int PWMIntakeRaiseMotor = 0;
@@ -67,14 +69,14 @@ public final class Constants {
 
     public static final class IndexerConstants{
         //Motor controller CAN IDs
-        public static final int CANindexerMotor = 9;
+        public static final int CANindexerMotor = 10;
     }
 
     public static final class ShooterConstants{
         
         //Motor controller CAN IDs
-        public static final int CANleadMotor = 7;
-        public static final int CANfollowMotor = 8;
+        public static final int CANleadMotor = 11;
+        public static final int CANfollowMotor = 12;
 
         //Power Distribution Panel (PDP) slots
         public static final int PDPleadMotor = 6;
