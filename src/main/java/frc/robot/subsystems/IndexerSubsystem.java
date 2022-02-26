@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.IndexerConstants;
@@ -16,6 +17,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class IndexerSubsystem extends SubsystemBase {
   /** Creates a new IndexerSubsystem. */
   private static CANSparkMax m_indexerMotor;
+  
 
   
   public IndexerSubsystem() {

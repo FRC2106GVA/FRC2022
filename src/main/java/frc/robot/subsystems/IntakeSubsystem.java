@@ -6,7 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import frc.robot.Constants.IntakeConstants;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -17,7 +17,8 @@ public class IntakeSubsystem extends SubsystemBase {
 
   private static IntakeSubsystem robotIntake = null;
 
-  private static CANSparkMax m_IntakeMotor;
+  private static CANSparkMax m_intakeMotor;
+  private static Spark m_raiseMotor;
 
   public static IntakeSubsystem getInstance(){
     if(robotIntake == null){
@@ -29,8 +30,12 @@ public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new IntakeSubsystem. */
   private IntakeSubsystem() {
     
-    m_IntakeMotor = new CANSparkMax(Constants.IntakeConstants.CANIntakeMotor, MotorType.kBrushless);
+    m_intakeMotor = new CANSparkMax(IntakeConstants.CANIntakeMotor, MotorType.kBrushless);
     
+    m_intakeMotor.restoreFactoryDefaults();
+    m_intakeMotor.setIdleMode(IdleMode.kCoast);
+
+    m_raiseMotor = new Spark(IntakeConstants.PWMIntakeRaiseMotor);
 
   }
 
@@ -46,14 +51,18 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void setIntakeCurrentLimit (int IntakeCurrentLimit){
 
-    m_IntakeMotor.setSmartCurrentLimit(IntakeCurrentLimit);
+    m_intakeMotor.setSmartCurrentLimit(IntakeCurrentLimit);
 
   }
 
   public void runIntake (double IntakePercent){
 
-    m_IntakeMotor.set(IntakePercent);
+    m_intakeMotor.set(IntakePercent);
 
+  }
+
+  public void raiseIntake (double input){
+    m_raiseMotor.set(input);
   }
 
   
