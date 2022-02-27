@@ -83,7 +83,10 @@ public final class Constants {
     }
 
     public static final class ClimbConstants{
+        public static final int CANfirstStage1 = 0;
+        public static final int CANfirstStage2 = 0;
 
+        public static final int CANsecondStage = 0;
     }
 
     public static final class LimitSwitchConstant{
