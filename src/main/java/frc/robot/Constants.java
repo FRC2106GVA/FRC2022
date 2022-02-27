@@ -108,11 +108,11 @@ public final class Constants {
 
     public static final class inputConstants{
 
-        public static final int kIDrightJoystick = 0;
-        public static final int kIDleftJoystick = 1;
+        public static final int kIDrightJoystick = 1;
+        public static final int kIDleftJoystick = 0;
 
-        public static final int kIDxboxController = 4;
-        public static final int kIDbuttonBoard = 6;
+        public static final int kIDxboxController = 3;
+        public static final int kIDbuttonBoard = 2;
 
     }
 

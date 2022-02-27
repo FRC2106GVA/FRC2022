@@ -21,6 +21,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class ClimbSubsystem extends SubsystemBase {
 
+  
   private static CANSparkMax m_fisrtStage1;
   private static CANSparkMax m_firstStage2;
   private static CANSparkMax m_secondstage;

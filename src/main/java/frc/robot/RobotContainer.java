@@ -12,11 +12,14 @@ import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.commands.*;
 
 // Supress stupid warnings
@@ -36,6 +39,8 @@ public class RobotContainer {
   //Create drive subsystem instance
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
+  private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+  private final IndexerSubsystem m_indexerSubsystem = new IndexerSubsystem();
   
   public RobotContainer() {
 
@@ -44,7 +49,7 @@ public class RobotContainer {
 
     // Run drivetrain with joystick inputs, calls to DriveTrain subsystem with inputed values
     m_driveSubsystem.setDefaultCommand(
-    new RunCommand(() -> m_driveSubsystem.tankDrive(m_leftJoystick.getY(), m_rightJoystick.getY()), m_driveSubsystem));
+    new RunCommand(() -> m_driveSubsystem.tankDrive(-m_rightJoystick.getY(), m_leftJoystick.getX()), m_driveSubsystem));
 
   }
 
@@ -52,10 +57,14 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     // Test the shooter
-    //new JoystickButton(m_rightJoystick, 1)
-    //  .toggleWhenPressed(new TestShootCommand(m_shooterSubsystem), true);
-
-    
+    new JoystickButton(m_rightJoystick, 1)
+      .toggleWhenPressed(new TestShootCommand(m_shooterSubsystem), true);
+    new JoystickButton(m_xboxController, 4)
+      .toggleWhenPressed(new RunIntake(m_intakeSubsystem), true);
+    new JoystickButton(m_xboxController, 3)
+      .toggleWhenPressed(new RunIndexer(m_indexerSubsystem), true);
+      new JoystickButton(m_xboxController, 2)
+      .toggleWhenPressed(new RunIndexerBack(m_indexerSubsystem), true);
   }
  
 

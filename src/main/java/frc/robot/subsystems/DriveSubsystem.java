@@ -14,7 +14,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -77,9 +77,9 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   // Control drivetrain with lamba function in RobotContainer
-  public void tankDrive(double left, double right)
+  public void tankDrive(double fwd, double rot)
   {
-    m_robotTankDrive.arcadeDrive(left, right);
+    m_robotTankDrive.arcadeDrive(fwd, rot);
   }
 
   @Override
