@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.ClimbSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.XboxController;
@@ -33,14 +34,16 @@ public class RobotContainer {
 
   //Create controller instance
   Joystick m_rightJoystick = new Joystick(inputConstants.kIDrightJoystick);
-  Joystick m_leftJoystick =  new Joystick(inputConstants.kIDleftJoystick);
+  Joystick m_leftJoystick = new Joystick(inputConstants.kIDleftJoystick);
   XboxController m_xboxController = new XboxController(inputConstants.kIDxboxController);
+  Joystick m_buttonBoard = new Joystick(inputConstants.kIDbuttonBoard);
 
   //Create drive subsystem instance
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   private final IndexerSubsystem m_indexerSubsystem = new IndexerSubsystem();
+  private final ClimbSubsystem m_climbSubsystem = new ClimbSubsystem();
   
   public RobotContainer() {
 
@@ -63,8 +66,21 @@ public class RobotContainer {
       .toggleWhenPressed(new RunIntake(m_intakeSubsystem), true);
     new JoystickButton(m_xboxController, 3)
       .toggleWhenPressed(new RunIndexer(m_indexerSubsystem), true);
-      new JoystickButton(m_xboxController, 2)
+    new JoystickButton(m_xboxController, 2)
       .toggleWhenPressed(new RunIndexerBack(m_indexerSubsystem), true);
+
+    //Climb Buttons
+    new JoystickButton(m_buttonBoard, 1)
+      .whenHeld(new FirstStageForward(m_climbSubsystem), true);
+    new JoystickButton(m_buttonBoard, 2)
+      .whenHeld(new FirstStageBackward(m_climbSubsystem), true);
+    
+    new JoystickButton(m_buttonBoard, 3)
+      .whenHeld(new SecondStageForward(m_climbSubsystem), true);
+    new JoystickButton(m_buttonBoard, 4)
+      .whenHeld(new SecondStageBackward(m_climbSubsystem), true);
+    
+    
   }
  
 

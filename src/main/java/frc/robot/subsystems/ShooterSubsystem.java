@@ -49,6 +49,7 @@ public class ShooterSubsystem extends SubsystemBase {
     // Make the one shooter motor follow the other
     m_shooterFollow.follow(m_shooterLead, true);
 
+
     // Make the one encoder follow the other
     m_leadEncoder = m_shooterLead.getEncoder();
 
@@ -62,7 +63,6 @@ public class ShooterSubsystem extends SubsystemBase {
     m_pidController.setIZone(ShooterPIDConstants.kIz);
     m_pidController.setFF(ShooterPIDConstants.kFF);
     m_pidController.setOutputRange(ShooterPIDConstants.kMinOutput, ShooterPIDConstants.kMaxOutput);
-    
   }
 
   // Run the shooter lead motor, is called via a instant command
@@ -72,6 +72,10 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public void testShooterPID(double setpoint){
     m_pidController.setReference(setpoint, CANSparkMax.ControlType.kVelocity);
+  }
+
+  public void stopMotors(){
+    m_shooterLead.stopMotor();
   }
 
   @Override

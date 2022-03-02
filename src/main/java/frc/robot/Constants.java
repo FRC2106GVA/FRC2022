@@ -96,11 +96,11 @@ public final class Constants {
     }
 
     public static final class ShooterPIDConstants{
-        public static double kP = 0; 
-        public static double kI = 0;
-        public static double kD = 0; 
+        public static double kP = 0.0003; //
+        public static double kI = 0; //0.0000005
+        public static double kD = 0; //0.00001
         public static double kIz = 0; 
-        public static double kFF = 0.000015; 
+        public static double kFF = 0.00019; 
         public static double kMaxOutput = 1; 
         public static double kMinOutput = -1;
         public static double maxRPM = 5700;
