@@ -9,16 +9,16 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
 /** An example command that uses an example subsystem. */
-public class RaiseIntake extends CommandBase {
+public class LowerIntake extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final IntakeSubsystem m_subsystem;
 
   /**
-   * Creates a new ExampleCommand.
+   * Creates a new LowerIntake.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public RaiseIntake(IntakeSubsystem subsystem) {
+  public LowerIntake(IntakeSubsystem subsystem) {
 
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -32,7 +32,7 @@ public class RaiseIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.raiseIntake(1);
+    m_subsystem.raiseIntake(-1);
   }
 
   // Called once the command ends or is interrupted.

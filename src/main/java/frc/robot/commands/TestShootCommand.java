@@ -33,7 +33,7 @@ public class TestShootCommand extends CommandBase {
   @Override
   public void execute() {
     //m_subsystem.runTestShooter(0.65);
-    m_subsystem.testShooterPID(4000);
+    m_subsystem.testShooterPID(2500);
   }
 
   // Called once the command ends or is interrupted.

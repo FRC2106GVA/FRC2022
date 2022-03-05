@@ -43,7 +43,12 @@ public final class Constants {
         //PID Constants
 
         public static final double kDriveGearRatio = 6.9;
-         
+        
+
+        //public static final double
+
+        public static boolean kInvertedDrivetrain = false;
+        public static boolean kGyroReversed = false;
     }
 
     public static final class IntakeConstants{
@@ -85,10 +90,10 @@ public final class Constants {
     }
 
     public static final class ClimbConstants{
-        public static final int CANfirstStage1 = 0;
-        public static final int CANfirstStage2 = 0;
+        public static final int CANfirstStage1 = 7;
+        public static final int CANfirstStage2 = 8;
 
-        public static final int CANsecondStage = 0;
+        public static final int CANsecondStage = 9;
     }
 
     public static final class LimitSwitchConstant{
@@ -96,9 +101,9 @@ public final class Constants {
     }
 
     public static final class ShooterPIDConstants{
-        public static double kP = 0.0003; //
+        public static double kP = 0.00004; //
         public static double kI = 0; //0.0000005
-        public static double kD = 0; //0.00001
+        public static double kD = 0.0000004; //0.00001
         public static double kIz = 0; 
         public static double kFF = 0.00019; 
         public static double kMaxOutput = 1; 
@@ -111,8 +116,8 @@ public final class Constants {
         public static final int kIDrightJoystick = 1;
         public static final int kIDleftJoystick = 0;
 
-        public static final int kIDxboxController = 3;
-        public static final int kIDbuttonBoard = 2;
+        public static final int kIDxboxController = 2;
+        public static final int kIDbuttonBoard = 3;
 
     }
 
@@ -124,5 +129,10 @@ public final class Constants {
         public static final double kCameraMountAngle = 20.0;
         
         
+    }
+
+    public static final class AutoConstants{
+        public static final double kAutoDriveDistanceInches = 40;
+        public static final double kAutoDriveSpeed = 0.5; 
     }
 }

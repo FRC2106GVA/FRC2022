@@ -26,6 +26,7 @@ public class ShooterSubsystem extends SubsystemBase {
    // Create encoders- one is main and the other one follows
    private static RelativeEncoder m_leadEncoder;
    private static RelativeEncoder m_followEncoder;
+  
 
    private SparkMaxPIDController m_pidController;
 

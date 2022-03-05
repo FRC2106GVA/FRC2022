@@ -28,9 +28,7 @@ import frc.robot.commands.*;
 
 public class RobotContainer {
 
-  // Auto command stuff
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+ 
 
   //Create controller instance
   Joystick m_rightJoystick = new Joystick(inputConstants.kIDrightJoystick);
@@ -45,6 +43,7 @@ public class RobotContainer {
   private final IndexerSubsystem m_indexerSubsystem = new IndexerSubsystem();
   private final ClimbSubsystem m_climbSubsystem = new ClimbSubsystem();
   
+
   public RobotContainer() {
 
     // Configure the button bindings
@@ -69,17 +68,26 @@ public class RobotContainer {
     new JoystickButton(m_xboxController, 2)
       .toggleWhenPressed(new RunIndexerBack(m_indexerSubsystem), true);
 
+    new JoystickButton(m_xboxController, 9)
+      .toggleWhenPressed(new Vomit(m_intakeSubsystem, m_shooterSubsystem, m_indexerSubsystem));
+
+    new JoystickButton(m_buttonBoard, 4)
+      .whenHeld(new RaiseIntake(m_intakeSubsystem), true);
+    new JoystickButton(m_buttonBoard, 8)
+      .whenHeld(new LowerIntake(m_intakeSubsystem), true);
+    
     //Climb Buttons
     new JoystickButton(m_buttonBoard, 1)
       .whenHeld(new FirstStageForward(m_climbSubsystem), true);
-    new JoystickButton(m_buttonBoard, 2)
+    new JoystickButton(m_buttonBoard, 5)
       .whenHeld(new FirstStageBackward(m_climbSubsystem), true);
     
-    new JoystickButton(m_buttonBoard, 3)
+    new JoystickButton(m_buttonBoard, 2)
       .whenHeld(new SecondStageForward(m_climbSubsystem), true);
-    new JoystickButton(m_buttonBoard, 4)
+    new JoystickButton(m_buttonBoard, 6)
       .whenHeld(new SecondStageBackward(m_climbSubsystem), true);
     
+
     
   }
  
@@ -97,7 +105,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return new ShootAuto(m_driveSubsystem, m_shooterSubsystem, m_indexerSubsystem, m_intakeSubsystem);
   }
 }
  

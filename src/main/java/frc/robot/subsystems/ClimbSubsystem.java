@@ -48,7 +48,7 @@ public class ClimbSubsystem extends SubsystemBase {
 
     m_firstStageMotors = new MotorControllerGroup(m_firstStage1, m_firstStage2);
 
-
+   
   }
 
   @Override
