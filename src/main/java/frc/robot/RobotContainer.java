@@ -4,6 +4,7 @@
 
 // Imports
 package frc.robot;
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -43,6 +44,7 @@ public class RobotContainer {
   private final IndexerSubsystem m_indexerSubsystem = new IndexerSubsystem();
   private final ClimbSubsystem m_climbSubsystem = new ClimbSubsystem();
   
+  SlewRateLimiter filter = new SlewRateLimiter(Constants.DriveConstants.inputSlew);
 
   public RobotContainer() {
 
@@ -51,14 +53,14 @@ public class RobotContainer {
 
     // Run drivetrain with joystick inputs, calls to DriveTrain subsystem with inputed values
     m_driveSubsystem.setDefaultCommand(
-    new RunCommand(() -> m_driveSubsystem.tankDrive(-m_rightJoystick.getY(), m_leftJoystick.getX()), m_driveSubsystem));
+    new RunCommand(() -> m_driveSubsystem.tankDrive(filter.calculate(-m_rightJoystick.getY()), filter.calculate(m_leftJoystick.getX()), false), m_driveSubsystem));
 
   }
 
   //Instant commands, you can call functions instantly with inputs
   private void configureButtonBindings() {
 
-    // Test the shooter
+    // Instant commands
     new JoystickButton(m_rightJoystick, 1)
       .toggleWhenPressed(new TestShootCommand(m_shooterSubsystem), true);
     new JoystickButton(m_xboxController, 4)

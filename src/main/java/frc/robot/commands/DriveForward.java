@@ -38,18 +38,18 @@ public class DriveForward extends CommandBase {
       if (counter < 50 * driveTime)
       {
           counter++;
-          m_drive.tankDrive(driveSpeed, 0);
+          m_drive.tankDrive(driveSpeed, 0, false);
       }
       else
       {
-        m_drive.tankDrive(0, 0);
+        m_drive.tankDrive(0, 0, false);
         isFin = true;
       }
   }
 
   @Override
   public void end(boolean interrupted) {
-    m_drive.tankDrive(0, 0);
+    m_drive.tankDrive(0, 0, false);
   }
 
    @Override

@@ -17,6 +17,10 @@ public final class Constants {
     //Mechanism Constants
     public static final class DriveConstants{
 
+        // Drive train input slew rate
+        public static final double inputSlew = 0.5;
+        public static final double kOffBalanceAngleThresholdDegrees = 10;
+        public static final double kOonBalanceAngleThresholdDegrees  = 5;
         //Motor controller CAN IDs
         public static final int CANrightMotor1 = 1;
         public static final int CANrightMotor2 = 2;
