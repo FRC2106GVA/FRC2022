@@ -15,6 +15,8 @@ import frc.robot.Constants.ShooterConstants;
 import frc.robot.Constants.ShooterPIDConstants;
 import frc.robot.util.VisionProcessing;
 
+@SuppressWarnings("unused")
+
 public class ShooterSubsystem extends SubsystemBase {
 
    
@@ -53,6 +55,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
     // Make the one encoder follow the other
     m_leadEncoder = m_shooterLead.getEncoder();
+
 
     m_visionProcessing.getInstance();
 
