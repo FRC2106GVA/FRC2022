@@ -36,7 +36,8 @@ public class IntakeSubsystem extends SubsystemBase {
     m_intakeMotor.setIdleMode(IdleMode.kCoast);
 
     m_raiseMotor = new Spark(IntakeConstants.PWMIntakeRaiseMotor);
-
+    m_intakeMotor.setSmartCurrentLimit(30);
+              
   }
 
   @Override

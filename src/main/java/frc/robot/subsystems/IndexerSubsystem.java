@@ -24,6 +24,7 @@ public class IndexerSubsystem extends SubsystemBase {
     m_indexerMotor = new CANSparkMax(IndexerConstants.CANindexerMotor, MotorType.kBrushless);
     m_indexerMotor.restoreFactoryDefaults();
     m_indexerMotor.setIdleMode(IdleMode.kCoast);
+    m_indexerMotor.setSmartCurrentLimit(20);
     
 
   }

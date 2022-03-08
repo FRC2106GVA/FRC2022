@@ -7,6 +7,8 @@ package frc.robot.commands;
 import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+import frc.robot.Constants.ShooterConstants;
+
 /** An example command that uses an example subsystem. */
 public class TestShootCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
@@ -33,7 +35,9 @@ public class TestShootCommand extends CommandBase {
   @Override
   public void execute() {
     //m_subsystem.runTestShooter(0.65);
-    m_subsystem.testShooterPID(2500);
+    m_subsystem.testShooterPID(2300);
+    ShooterConstants.shooterRunning = true;
+  
   }
 
   // Called once the command ends or is interrupted.
@@ -41,6 +45,8 @@ public class TestShootCommand extends CommandBase {
   public void end(boolean interrupted) {
     //m_subsystem.testShooterPID(0);
     m_subsystem.stopMotors();
+    ShooterConstants.shooterRunning = true;
+    System.out.println("Shooter stopped");
   }
 
   // Returns true when the command should end.

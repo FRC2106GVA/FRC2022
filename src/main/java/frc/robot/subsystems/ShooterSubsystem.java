@@ -53,6 +53,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
     // Make the one encoder follow the other
     m_leadEncoder = m_shooterLead.getEncoder();
+    
 
     m_visionProcessing.getInstance();
 
@@ -64,6 +65,8 @@ public class ShooterSubsystem extends SubsystemBase {
     m_pidController.setIZone(ShooterPIDConstants.kIz);
     m_pidController.setFF(ShooterPIDConstants.kFF);
     m_pidController.setOutputRange(ShooterPIDConstants.kMinOutput, ShooterPIDConstants.kMaxOutput);
+
+    //m_shooterLead.setCur
   }
 
   // Run the shooter lead motor, is called via a instant command

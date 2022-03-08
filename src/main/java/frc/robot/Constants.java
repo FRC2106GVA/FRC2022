@@ -27,7 +27,7 @@ public final class Constants {
         public static final int CANleftMotor3 = 6;
 
         //Power Distribution Panel (PDP) slots
-        /*
+        /*CO
         public static final int PDPrightMotor1 = 0;
         public static final int PDPrightMotor2 = 1;
         public static final int PDPrightMotor3 = 2;
@@ -86,6 +86,8 @@ public final class Constants {
         //Power Distribution Panel (PDP) slots
         public static final int PDPleadMotor = 6;
         public static final int PDPfollowMotor = 7;
+
+        public static boolean shooterRunning = false;
 
     }
 
