@@ -19,6 +19,8 @@ import frc.robot.Constants.AutoConstants;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.*;
 
+@SuppressWarnings("unused")
+
 
 /** An example command that uses an example subsystem. */
 public class ShootAuto extends CommandBase {

@@ -2,9 +2,8 @@
 
 // Import variables and libaries
 package frc.robot.subsystems;
-
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
 
 
@@ -17,6 +16,7 @@ import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Timer;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -30,6 +30,8 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+@SuppressWarnings("unused")
 
 // Get robot drive instance  
 public class DriveSubsystem extends SubsystemBase {
@@ -90,6 +92,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     resetEncoders();
 
+
     m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()));
 
     try
@@ -101,11 +104,63 @@ public class DriveSubsystem extends SubsystemBase {
     }
   }
 
+
+  boolean autoBalanceXMode = false;
+  boolean autoBalanceYMode = false;
+
   // Control drivetrain with lamba function in RobotContainer
-  public void tankDrive(double fwd, double rot)
+  public void tankDrive(double fwd, double rot, boolean stabi)
   {
-    m_robotDrive.arcadeDrive(fwd, rot);
+    if(stabi == true){
+      // Drive with stabi
+
+      // I HAVE NO CLUE IF THIS WILL WORK!!!
+
+      double xAxisRate = rot;
+      double yAxisRate = fwd;
+      double pitchAngleDegrees = navx.getPitch();
+      double rollAngleDegrees = navx.getRoll();
+      
+      // check if x-axis is off balance and set inner mode activation
+      if ( !autoBalanceXMode && (Math.abs(pitchAngleDegrees) >= Math.abs(Constants.DriveConstants.kOffBalanceAngleThresholdDegrees))) {
+        autoBalanceXMode = true;
+      }
+      else if ( autoBalanceXMode && (Math.abs(pitchAngleDegrees) <= Math.abs(Constants.DriveConstants.kOonBalanceAngleThresholdDegrees))) {
+        autoBalanceXMode = false;
+      }
+
+      // check if x-axis is off balance and set inner mode activation
+      if ( !autoBalanceYMode && (Math.abs(pitchAngleDegrees) >= Math.abs(Constants.DriveConstants.kOffBalanceAngleThresholdDegrees))) {
+          autoBalanceYMode = true;
+      }
+      else if ( autoBalanceYMode && (Math.abs(pitchAngleDegrees) <= Math.abs(Constants.DriveConstants.kOonBalanceAngleThresholdDegrees))) {
+          autoBalanceYMode = false;
+      }
+
+      // Control robot if inner mode is on
+      if ( autoBalanceXMode ) {
+        double pitchAngleRadians = pitchAngleDegrees * (Math.PI / 180.0);
+        xAxisRate = Math.sin(pitchAngleRadians) * -1;
+      }
+      if ( autoBalanceYMode ) {
+        double rollAngleRadians = rollAngleDegrees * (Math.PI / 180.0);
+        yAxisRate = Math.sin(rollAngleRadians) * -1;
+      }
+
+    m_robotDrive.arcadeDrive(yAxisRate, rot);
+    Timer.delay(0.005);		
+
+    }
+    else{
+      // Drive normal
+      m_robotDrive.arcadeDrive(fwd, rot);
+    }
   }
+
+
+
+
+
 
   @Override
   public void periodic() {

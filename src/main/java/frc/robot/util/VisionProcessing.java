@@ -7,6 +7,8 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 import frc.robot.Constants.VisionConstants;
 
+@SuppressWarnings("unused")
+
 public class VisionProcessing{
     
     private static VisionProcessing visionProcessing = null;
@@ -14,7 +16,7 @@ public class VisionProcessing{
     private static NetworkTableEntry tx, ty;
     private static double x, y;
 
-    public static VisionProcessing getInstance()
+    public VisionProcessing getInstance()
     {
         if (visionProcessing == null)
         {

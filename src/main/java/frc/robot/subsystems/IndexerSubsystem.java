@@ -14,6 +14,8 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+@SuppressWarnings("unused")
+
 public class IndexerSubsystem extends SubsystemBase {
   /** Creates a new IndexerSubsystem. */
   private static CANSparkMax m_indexerMotor;

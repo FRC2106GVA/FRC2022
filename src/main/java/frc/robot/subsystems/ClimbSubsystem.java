@@ -16,7 +16,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
- 
+@SuppressWarnings("unused")
 
 
 //Remember to set voltage limit

@@ -13,6 +13,8 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+@SuppressWarnings("unused")
+
 public class IntakeSubsystem extends SubsystemBase {
 
   private static IntakeSubsystem robotIntake = null;

@@ -10,6 +10,9 @@ import frc.robot.subsystems.IndexerSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
+
+@SuppressWarnings("unused")
+
 /** An example command that uses an example subsystem. */
 public class ShootCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
