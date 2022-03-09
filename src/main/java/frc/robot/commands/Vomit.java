@@ -18,6 +18,8 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.TestShootCommand;
 
 
+@SuppressWarnings("unused")
+
 /** An example command that uses an example subsystem. */
 public class Vomit extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})

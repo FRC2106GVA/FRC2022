@@ -22,6 +22,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
+import frc.robot.util.VisionProcessing;
+
 import frc.robot.commands.*;
 
 // Supress stupid warnings
@@ -43,6 +45,8 @@ public class RobotContainer {
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   private final IndexerSubsystem m_indexerSubsystem = new IndexerSubsystem();
   private final ClimbSubsystem m_climbSubsystem = new ClimbSubsystem();
+  private final static VisionProcessing m_visionProcessing = VisionProcessing.getInstance();
+
   
   SlewRateLimiter filter = new SlewRateLimiter(Constants.DriveConstants.inputSlew);
 
@@ -53,7 +57,7 @@ public class RobotContainer {
 
     // Run drivetrain with joystick inputs, calls to DriveTrain subsystem with inputed values
     m_driveSubsystem.setDefaultCommand(
-    new RunCommand(() -> m_driveSubsystem.tankDrive(filter.calculate(-m_rightJoystick.getY()), filter.calculate(m_leftJoystick.getX()), false), m_driveSubsystem));
+    new RunCommand(() -> m_driveSubsystem.tankDrive(filter.calculate(-m_rightJoystick.getY()),m_leftJoystick.getX(), false), m_driveSubsystem));
 
   }
 
@@ -89,7 +93,8 @@ public class RobotContainer {
     new JoystickButton(m_buttonBoard, 6)
       .whenHeld(new SecondStageBackward(m_climbSubsystem), true);
     
-
+    new JoystickButton(m_buttonBoard, 7)
+      .whenPressed(new InstantCommand(m_visionProcessing :: getDistance(), m_visionProcessing));
     
   }
  

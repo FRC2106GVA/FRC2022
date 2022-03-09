@@ -16,7 +16,7 @@ public class VisionProcessing{
     private static NetworkTableEntry tx, ty;
     private static double x, y;
 
-    public VisionProcessing getInstance()
+    public static VisionProcessing getInstance()
     {
         if (visionProcessing == null)
         {

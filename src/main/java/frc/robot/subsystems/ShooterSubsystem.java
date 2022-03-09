@@ -56,9 +56,9 @@ public class ShooterSubsystem extends SubsystemBase {
     // Make the one encoder follow the other
     m_leadEncoder = m_shooterLead.getEncoder();
     
+    m_visionProcessing = VisionProcessing.getInstance();
 
-
-    m_visionProcessing.getInstance();
+    //m_visionProcessing.getInstance();
 
     m_pidController = m_shooterLead.getPIDController();
 
