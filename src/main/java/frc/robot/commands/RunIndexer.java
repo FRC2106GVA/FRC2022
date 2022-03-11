@@ -31,7 +31,7 @@ public class RunIndexer extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.runIndexer(-0.25);
+    m_subsystem.runIndexer(-0.6);
   }
 
   // Called once the command ends or is interrupted.

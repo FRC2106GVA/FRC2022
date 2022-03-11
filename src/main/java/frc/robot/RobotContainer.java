@@ -4,14 +4,23 @@
 
 // Imports
 package frc.robot;
+import javax.swing.text.html.HTMLDocument.RunElement;
+
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.inputConstants;
+import edu.wpi.first.wpilibj.shuffleboard.EventImportance;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -22,7 +31,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
-import frc.robot.util.VisionProcessing;
+import frc.robot.subsystems.VisionSubsystem;
+
 
 import frc.robot.commands.*;
 
@@ -45,7 +55,11 @@ public class RobotContainer {
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   private final IndexerSubsystem m_indexerSubsystem = new IndexerSubsystem();
   private final ClimbSubsystem m_climbSubsystem = new ClimbSubsystem();
-  private final static VisionProcessing m_visionProcessing = VisionProcessing.getInstance();
+  private final VisionSubsystem m_visionProcessing = new VisionSubsystem();
+
+  //private static Command shootCommand;
+
+  private int distance = 0;
 
   
   SlewRateLimiter filter = new SlewRateLimiter(Constants.DriveConstants.inputSlew);
@@ -59,20 +73,44 @@ public class RobotContainer {
     m_driveSubsystem.setDefaultCommand(
     new RunCommand(() -> m_driveSubsystem.tankDrive(filter.calculate(-m_rightJoystick.getY()),m_leftJoystick.getX(), false), m_driveSubsystem));
 
+    // Set the scheduler to log Shuffleboard events for command init, interrupt, and finish
+    CommandScheduler.getInstance()
+        .onCommandInitialize(
+            command ->
+                Shuffleboard.addEventMarker(
+                    "Command initialized", command.getName(), EventImportance.kNormal));
+    CommandScheduler.getInstance()
+        .onCommandInterrupt(
+            command ->
+                Shuffleboard.addEventMarker(
+                    "Command interrupted", command.getName(), EventImportance.kNormal));
+    CommandScheduler.getInstance()
+        .onCommandFinish(
+            command ->
+                Shuffleboard.addEventMarker(
+                    "Command finished", command.getName(), EventImportance.kNormal));
+    
+
   }
 
   //Instant commands, you can call functions instantly with inputs
   private void configureButtonBindings() {
 
+    
+    new JoystickButton(m_rightJoystick, 3)
+    .whenPressed(() -> m_driveSubsystem.setMaxOutput(0.5))
+    .whenReleased(() -> m_driveSubsystem.setMaxOutput(1));
+   
     // Instant commands
-    new JoystickButton(m_rightJoystick, 1)
-      .toggleWhenPressed(new TestShootCommand(m_shooterSubsystem), true);
     new JoystickButton(m_xboxController, 4)
+      .whenPressed(roughShoot());
+    
+    new JoystickButton(m_rightJoystick, 1)
       .toggleWhenPressed(new RunIntake(m_intakeSubsystem), true);
-    new JoystickButton(m_xboxController, 3)
-      .toggleWhenPressed(new RunIndexer(m_indexerSubsystem), true);
-    new JoystickButton(m_xboxController, 2)
-      .toggleWhenPressed(new RunIndexerBack(m_indexerSubsystem), true);
+    new JoystickButton(m_xboxController, 6)
+      .whenHeld(new RunIndexer(m_indexerSubsystem), true);
+    new JoystickButton(m_xboxController, 5)
+      .whenHeld(new RunIndexerBack(m_indexerSubsystem), true);
 
     new JoystickButton(m_xboxController, 9)
       .toggleWhenPressed(new Vomit(m_intakeSubsystem, m_shooterSubsystem, m_indexerSubsystem));
@@ -94,16 +132,15 @@ public class RobotContainer {
       .whenHeld(new SecondStageBackward(m_climbSubsystem), true);
     
     new JoystickButton(m_buttonBoard, 7)
-      .whenPressed(new InstantCommand(m_visionProcessing :: getDistance(), m_visionProcessing));
+      .whenPressed(new InstantCommand(m_visionProcessing :: getDistance, m_visionProcessing));
+    new JoystickButton(m_buttonBoard, 3)
+      .toggleWhenPressed(new ChangeLimelightView(m_visionProcessing), true);
     
   }
  
 
   
 // AUTO STUFF BELOW THIS
-
-
-
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -113,6 +150,21 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return new ShootAuto(m_driveSubsystem, m_shooterSubsystem, m_indexerSubsystem, m_intakeSubsystem);
+  }
+
+  public Command roughShoot(){
+    Command roughShoot = new SequentialCommandGroup(
+      new ParallelRaceGroup(
+        new RunIndexerBack(m_indexerSubsystem),
+        new WaitCommand(0.2)
+      ),
+      new ParallelRaceGroup(
+        new RunIndexer(m_indexerSubsystem),
+        new RunShooter(m_shooterSubsystem),
+        new WaitCommand(2)
+      )
+    );
+    return roughShoot;
   }
 }
  

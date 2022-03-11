@@ -58,9 +58,12 @@ public class ShootAuto extends CommandBase {
         new WaitCommand(3)
       ),
       new DriveForward(m_driveSubsystem, .6f, -.5f, true),
-      new RunIndexerBack(m_indexerSubsystem),
       new ParallelRaceGroup(
-        new TestShootCommand(m_shooterSubsystem),
+        new RunIndexerBack(m_indexerSubsystem),
+        new WaitCommand(0.2)
+      ),
+      new ParallelRaceGroup(
+        new RunShooter(m_shooterSubsystem),
         new SequentialCommandGroup(
           new WaitCommand(1),
           new ParallelRaceGroup(

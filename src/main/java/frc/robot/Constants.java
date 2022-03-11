@@ -18,7 +18,7 @@ public final class Constants {
     public static final class DriveConstants{
 
         // Drive train input slew rate
-        public static final double inputSlew = 0.8;
+        public static final double inputSlew = 0.95;
         public static final double kOffBalanceAngleThresholdDegrees = 10;
         public static final double kOonBalanceAngleThresholdDegrees  = 5;
         //Motor controller CAN IDs
@@ -130,11 +130,13 @@ public final class Constants {
     public static final class VisionConstants{
         
         public static final double kTargetHeightMeters = 2.64;
-        public static final double kCameraHeightMeters = 1.1131;
+        public static final double kCameraHeightMeters = 1.1557;
+
+        public static final double kVelocitytoRPMConversion = 2386/6.68;
 
         public static final double kCameraMountAngle = 20.0;
         
-        
+        public static boolean isTargeting = false;
     }
 
     public static final class AutoConstants{

@@ -77,9 +77,9 @@ public class DriveSubsystem extends SubsystemBase {
 
     // Assign motors to speed controller groups, just input motor names
     m_rightMotors = new MotorControllerGroup(m_rightMotor1, m_rightMotor2, m_rightMotor3);
-    m_leftMotors = new MotorControllerGroup(m_leftMotor1 ,m_leftMotor2, m_leftMotor3);
+    m_leftMotors = new MotorControllerGroup(m_leftMotor1, m_leftMotor2, m_leftMotor3);
 
-    // Invert motors, do this so drivetrain spin like a beyblade
+    // Invert motors, do this so drivetrain no spin like beyblade
     m_leftMotors.setInverted(true);
     m_rightMotors.setInverted(false);
 
@@ -264,4 +264,6 @@ public class DriveSubsystem extends SubsystemBase {
   {
     navx.reset();
   }
+
+
 }

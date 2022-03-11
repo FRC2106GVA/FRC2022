@@ -22,12 +22,6 @@ public class IntakeSubsystem extends SubsystemBase {
   private static CANSparkMax m_intakeMotor;
   private static Spark m_raiseMotor;
 
-  public static IntakeSubsystem getInstance(){
-    if(robotIntake == null){
-      robotIntake = new IntakeSubsystem();
-    }
-    return robotIntake;
-  }
 
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
@@ -45,11 +39,6 @@ public class IntakeSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-  }
-
-  @Override
-  public void simulationPeriodic() {
-    // This method will be called once per scheduler run during simulation
   }
 
   public void setIntakeCurrentLimit (int IntakeCurrentLimit){

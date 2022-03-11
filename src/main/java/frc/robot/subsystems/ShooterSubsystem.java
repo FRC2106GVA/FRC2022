@@ -5,7 +5,12 @@
 // Imports
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.commands.*;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -13,7 +18,9 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxPIDController;
 import frc.robot.Constants.ShooterConstants;
 import frc.robot.Constants.ShooterPIDConstants;
-import frc.robot.util.VisionProcessing;
+import frc.robot.subsystems.VisionSubsystem;
+
+import frc.robot.subsystems.IndexerSubsystem;
 
 @SuppressWarnings("unused")
 
@@ -31,9 +38,9 @@ public class ShooterSubsystem extends SubsystemBase {
   
 
    private SparkMaxPIDController m_pidController;
-
-   private static VisionProcessing m_visionProcessing;
-
+   private static VisionSubsystem m_visionProcessing;
+   //private static ShooterSubsystem m_shooterSubsystem;
+   private static IndexerSubsystem m_indexerSubsystem;
      
 
   public ShooterSubsystem() {
@@ -56,9 +63,8 @@ public class ShooterSubsystem extends SubsystemBase {
     // Make the one encoder follow the other
     m_leadEncoder = m_shooterLead.getEncoder();
     
-    m_visionProcessing = VisionProcessing.getInstance();
-
-    //m_visionProcessing.getInstance();
+    m_visionProcessing = new VisionSubsystem();
+    
 
     m_pidController = m_shooterLead.getPIDController();
 
@@ -92,5 +98,6 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
 
-
+    
+  
 }

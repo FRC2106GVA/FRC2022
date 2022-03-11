@@ -34,15 +34,9 @@ public class RunIndexerBack extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (counter < 25)
-    {
-      m_subsystem.runIndexer(0.15);
-      counter++;
-    }
-    else
-    {
-      m_subsystem.runIndexer(0);
-    }
+   
+    m_subsystem.runIndexer(0.15);
+
   }
 
   // Called once the command ends or is interrupted.

@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 
-import frc.robot.commands.TestShootCommand;
+import frc.robot.commands.RunShooter;
 
 
 @SuppressWarnings("unused")
@@ -56,9 +56,9 @@ public class Vomit extends CommandBase {
   public void execute() {
     m_intakeSubsystem.runIntake(0.75);
    
-    m_indexerSubsystem.runIndexer(0.25);
+    m_indexerSubsystem.runIndexer(0.35);
     
-    m_shooterSubsystem.runTestShooter(-0.15);
+    //m_shooterSubsystem.runTestShooter(-0.15);
   }
   
   // Called once the command ends or is interrupted.
@@ -66,7 +66,7 @@ public class Vomit extends CommandBase {
   public void end(boolean interrupted) {
     m_intakeSubsystem.runIntake(0);
     m_indexerSubsystem.runIndexer(0);
-    m_shooterSubsystem.runTestShooter(0);
+    //m_shooterSubsystem.runTestShooter(0);
   }
 
   // Returns true when the command should end.
