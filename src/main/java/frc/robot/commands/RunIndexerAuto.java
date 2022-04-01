@@ -4,20 +4,21 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.ClimbSubsystem;
+import frc.robot.subsystems.IndexerSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class SecondStageForward extends CommandBase {
+public class RunIndexerAuto extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final ClimbSubsystem m_subsystem;
+  private final IndexerSubsystem m_subsystem;
 
   /**
-   * Creates a new SecondStageForward.
+   * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public SecondStageForward(ClimbSubsystem subsystem) {
+  public RunIndexerAuto(IndexerSubsystem subsystem) {
+
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
@@ -25,23 +26,18 @@ public class SecondStageForward extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    m_subsystem.runSecondStage(-0.75);
-    System.out.println("Second stage running forward");
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+    m_subsystem.runIndexer(-0.2);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.runSecondStage(0);
-    System.out.println("Second stage stopped");
-
+    m_subsystem.runIndexer(0);
   }
 
   // Returns true when the command should end.

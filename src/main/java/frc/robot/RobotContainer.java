@@ -149,19 +149,28 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new ShootAuto(m_driveSubsystem, m_shooterSubsystem, m_indexerSubsystem, m_intakeSubsystem);
+    //return new ShootAuto(m_driveSubsystem, m_shooterSubsystem, m_indexerSubsystem, m_intakeSubsystem);
+    return new WallShootAuto(m_driveSubsystem, m_shooterSubsystem, m_indexerSubsystem, m_intakeSubsystem);
   }
 
   public Command roughShoot(){
     Command roughShoot = new SequentialCommandGroup(
       new ParallelRaceGroup(
-        new RunIndexerBack(m_indexerSubsystem),
-        new WaitCommand(0.2)
-      ),
-      new ParallelRaceGroup(
-        new RunIndexer(m_indexerSubsystem),
-        new RunShooter(m_shooterSubsystem),
-        new WaitCommand(2)
+        new ParallelRaceGroup(
+          new RunShooter(m_shooterSubsystem),
+          new WaitCommand(4.5)),
+        new SequentialCommandGroup(
+          new ParallelRaceGroup(
+            new RunIndexer(m_indexerSubsystem),
+            new WaitCommand(0.5)
+          ),
+          new WaitCommand(0.75),
+          new ParallelRaceGroup(
+            new RunIndexer(m_indexerSubsystem),
+            new WaitCommand(1.5) 
+          ),
+          new WaitCommand(0.5)
+        )
       )
     );
     return roughShoot;

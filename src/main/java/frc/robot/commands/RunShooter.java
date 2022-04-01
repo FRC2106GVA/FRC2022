@@ -30,15 +30,18 @@ public class RunShooter extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_subsystem.testShooterPID(2300);
+    // 2300
+    //m_subsystem.runTestShooter(0.3);
+    m_subsystem.testShooterPID(2250);
+   // m_subsystem.testShooterPID(2250);
     ShooterConstants.shooterRunning = true;
+    System.out.println("Shooter running");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     //m_subsystem.runTestShooter(0.65);
-    
   
   }
 

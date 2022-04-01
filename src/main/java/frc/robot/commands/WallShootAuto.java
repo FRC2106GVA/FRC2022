@@ -26,7 +26,7 @@ import frc.robot.commands.*;
 
 
 /** An example command that uses an example subsystem. */
-public class ShootAuto extends CommandBase {
+public class WallShootAuto extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem m_driveSubsystem;
   private final ShooterSubsystem m_shooterSubsystem;
@@ -38,7 +38,7 @@ public class ShootAuto extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ShootAuto(DriveSubsystem driveSubsystem, ShooterSubsystem shooterSubsystem, IndexerSubsystem indexerSubsystem, IntakeSubsystem intakeSubsystem) {
+  public WallShootAuto(DriveSubsystem driveSubsystem, ShooterSubsystem shooterSubsystem, IndexerSubsystem indexerSubsystem, IntakeSubsystem intakeSubsystem) {
     m_driveSubsystem = driveSubsystem;
     m_shooterSubsystem = shooterSubsystem;
     m_indexerSubsystem = indexerSubsystem;
@@ -60,7 +60,7 @@ public class ShootAuto extends CommandBase {
         new RunIntake(m_intakeSubsystem),
         new WaitCommand(3)
       ),
-      new DriveForward(m_driveSubsystem, 0.8f, -.5f, true),
+      new DriveForward(m_driveSubsystem, 0.5f, -.5f, true),
       new WaitCommand(0.5),
       new ParallelRaceGroup(
         new RunIndexerBack(m_indexerSubsystem),
@@ -70,17 +70,18 @@ public class ShootAuto extends CommandBase {
       new ParallelRaceGroup(
         new ParallelRaceGroup(
           new RunShooter(m_shooterSubsystem),
-          new WaitCommand(2.75)),
+          new WaitCommand(4.5)),
         new SequentialCommandGroup(
           new ParallelRaceGroup(
             new RunIndexer(m_indexerSubsystem),
             new WaitCommand(0.5)
           ),
-          new WaitCommand(0.5),
+          new WaitCommand(0.75),
           new ParallelRaceGroup(
             new RunIndexer(m_indexerSubsystem),
-            new WaitCommand(1)
-          )
+            new WaitCommand(1.5) 
+          ),
+          new WaitCommand(0.5)
         )
       )
     ).schedule();

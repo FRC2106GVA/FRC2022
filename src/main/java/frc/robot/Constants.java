@@ -18,7 +18,7 @@ public final class Constants {
     public static final class DriveConstants{
 
         // Drive train input slew rate
-        public static final double inputSlew = 0.95;
+        public static final double inputSlew = 2.5;
         public static final double kOffBalanceAngleThresholdDegrees = 10;
         public static final double kOonBalanceAngleThresholdDegrees  = 5;
         //Motor controller CAN IDs
@@ -63,7 +63,7 @@ public final class Constants {
         public static final int CANIntakeMotor = 13;
 
         //Intake raise PWM port
-        public static final int PWMIntakeRaiseMotor = 0;
+        public static final int PWMIntakeRaiseMotor = 2;
 
         //Power Distribution Panel(PDP) slots
         //Change this to proper slot number

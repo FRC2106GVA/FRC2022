@@ -61,6 +61,9 @@ public class ClimbSubsystem extends SubsystemBase {
     
     m_firstStageEncoder.setPosition(0);
     m_secondStageEncoder.setPosition(0);
+
+    //m_firstStage1.setSoftLimit(SoftLimitDirection.kReverse, -169.58f);
+    //m_secondStage.setSoftLimit(SoftLimitDirection.kForward, 90.0f);
   }
 
   @Override

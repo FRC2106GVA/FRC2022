@@ -27,7 +27,7 @@ public class RunIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_subsystem.runIntake(-0.75);
+    m_subsystem.runIntake(-1);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

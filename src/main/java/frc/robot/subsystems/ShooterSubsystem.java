@@ -62,6 +62,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
     // Make the one encoder follow the other
     m_leadEncoder = m_shooterLead.getEncoder();
+    m_followEncoder = m_shooterFollow.getEncoder();
     
     m_visionProcessing = new VisionSubsystem();
     
@@ -94,7 +95,8 @@ public class ShooterSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // Update smart dashboard
-    SmartDashboard.putNumber("Shooter RPM", m_leadEncoder.getVelocity());
+    SmartDashboard.putNumber("Shooter RPM Lead", m_leadEncoder.getVelocity());
+    SmartDashboard.putNumber("Shooter RPM Follow", m_followEncoder.getVelocity());
   }
 
 

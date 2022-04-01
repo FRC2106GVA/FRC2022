@@ -4,21 +4,25 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.ClimbSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+import frc.robot.Constants.ShooterConstants;
+
 /** An example command that uses an example subsystem. */
-public class SecondStageForward extends CommandBase {
+public class RunShooterBack extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final ClimbSubsystem m_subsystem;
+  private final ShooterSubsystem m_subsystem;
 
   /**
-   * Creates a new SecondStageForward.
+   * Creates a new RunShooterBack.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public SecondStageForward(ClimbSubsystem subsystem) {
+  public RunShooterBack(ShooterSubsystem subsystem) {
+    
     m_subsystem = subsystem;
+    
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -26,22 +30,25 @@ public class SecondStageForward extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_subsystem.runSecondStage(-0.75);
-    System.out.println("Second stage running forward");
+    m_subsystem.runTestShooter(-0.1);
+    ShooterConstants.shooterRunning = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //m_subsystem.runTestShooter(0.65);
     
+  
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.runSecondStage(0);
-    System.out.println("Second stage stopped");
-
+    //m_subsystem.testShooterPID(0);
+    m_subsystem.stopMotors();
+    ShooterConstants.shooterRunning = true;
+    System.out.println("Shooter stopped");
   }
 
   // Returns true when the command should end.
